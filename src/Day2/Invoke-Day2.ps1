@@ -16,6 +16,29 @@ function Invoke-Day2 {
             $threes++
         }
     }
-    
+
     $twos * $threes
+}
+
+function Invoke-Day2Part2 {
+    Param (
+        $in
+    )
+
+    foreach ($boxid in $in) {
+        foreach ($comparebox in $in) {
+            if ($boxid -ne $comparebox) {
+                $differences = 0
+                for ($i=0; $i -lt $boxid.length;$i++) {
+                    if ($boxid[$i] -ne $comparebox[$i]) {
+                        $differences ++
+                        $diffindex = $i
+                    }
+                }
+                if ($differences -eq 1) {
+                    return $boxid.Remove($diffindex,1)
+                }
+            }
+        }
+    }
 }
